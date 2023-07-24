@@ -1,7 +1,5 @@
 package org.jqassistant.plugin.nexusiq.impl.scanreport;
 
-import java.io.IOException;
-
 import com.buschmais.jqassistant.core.scanner.api.Scanner;
 import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
 import com.buschmais.jqassistant.core.scanner.api.ScannerPlugin.Requires;
@@ -9,13 +7,15 @@ import com.buschmais.jqassistant.core.scanner.api.Scope;
 import com.buschmais.jqassistant.plugin.common.api.scanner.AbstractScannerPlugin;
 import com.buschmais.jqassistant.plugin.common.api.scanner.filesystem.FileResource;
 import com.buschmais.jqassistant.plugin.json.api.model.JSONFileDescriptor;
-
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jqassistant.plugin.nexusiq.api.model.scanreport.ScanReportFileDescriptor;
 import org.jqassistant.plugin.nexusiq.api.NexusIQScope;
+import org.jqassistant.plugin.nexusiq.api.model.scanreport.ScanReportFileDescriptor;
 import org.jqassistant.plugin.nexusiq.impl.resolver.ResolverFactory;
+import org.jqassistant.plugin.nexusiq.impl.scanreport.generated.model.ApiReportResultsDTO;
 import org.jqassistant.plugin.nexusiq.impl.scanreport.mapper.ScanReportMapper;
-import org.jqassistant.plugin.nexusiq.impl.scanreport.model.ScanReport;
+
+import java.io.IOException;
 
 @Requires(JSONFileDescriptor.class)
 public class ScanReportScannerPlugin extends AbstractScannerPlugin<FileResource, ScanReportFileDescriptor> {
@@ -25,6 +25,7 @@ public class ScanReportScannerPlugin extends AbstractScannerPlugin<FileResource,
     @Override
     public void initialize() {
         this.objectMapper = new ObjectMapper();
+        this.objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class ScanReportScannerPlugin extends AbstractScannerPlugin<FileResource,
         ScanReportFileDescriptor scanReportFileDescriptor = scannerContext.getStore()
             .addDescriptorType(jsonFileDescriptor, ScanReportFileDescriptor.class);
 
-        ScanReport scanReport = objectMapper.readValue(fileResource.createStream(), ScanReport.class);
+        ApiReportResultsDTO scanReport = objectMapper.readValue(fileResource.createStream(), ApiReportResultsDTO.class);
 
         ResolverFactory resolverFactory = ResolverFactory.builder()
             .build();

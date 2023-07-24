@@ -4,7 +4,18 @@
                     name="jQAssistant NexusIQ Plugin" id="jqassistant.plugin.nexusiq">
     <description>Provides a scanner for CycloneDX SBOM files.</description>
     <model>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ActionDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ComponentCoordinateDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ComponentFactDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ComponentIdentifierDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ConditionFactDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ConstraintFactDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.PolicyAlertDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.PolicyEvaluationResultDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ScanReportDescriptor</class>
         <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ScanReportFileDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.TriggerDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.TriggerReferenceDescriptor</class>
     </model>
     <scope>
         <class>org.jqassistant.plugin.nexusiq.api.NexusIQScope</class>
