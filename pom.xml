@@ -100,36 +100,6 @@
                     <detectJavaApiLink>false</detectJavaApiLink>
                 </configuration>
             </plugin>
-            <plugin>
-                <!-- OpenAPI Generator -->
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>6.2.1</version>
-                <executions>
-                    <execution>
-                        <id>generate-nexus-iq-api</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/src/main/openapi/nexus-iq.yml
-                            </inputSpec>
-                            <modelPackage>
-                                org.jqassistant.plugin.nexusiq.impl.scanreport.generated.model
-                            </modelPackage>
-                            <generatorName>java</generatorName>
-                            <generateApis>false</generateApis>
-                            <configOptions>
-                                <disallowAdditionalPropertiesIfNotPresent>false</disallowAdditionalPropertiesIfNotPresent>
-                                <library>jersey2</library>
-                                <serializationLibrary>jackson</serializationLibrary>
-                                <useJakartaEe>false</useJakartaEe>
-                                <openApiNullable>false</openApiNullable>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
@@ -219,5 +189,43 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
+    <profiles>
+        <profile>
+            <id>openapi-generation</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- OpenAPI Generator -->
+                        <groupId>org.openapitools</groupId>
+                        <artifactId>openapi-generator-maven-plugin</artifactId>
+                        <version>6.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>generate-nexus-iq-api</id>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <inputSpec>${project.basedir}/src/main/openapi/nexus-iq.yml
+                                    </inputSpec>
+                                    <modelPackage>
+                                        org.jqassistant.plugin.nexusiq.impl.scanreport.generated.model
+                                    </modelPackage>
+                                    <generatorName>java</generatorName>
+                                    <generateApis>false</generateApis>
+                                    <configOptions>
+                                        <disallowAdditionalPropertiesIfNotPresent>false</disallowAdditionalPropertiesIfNotPresent>
+                                        <library>jersey2</library>
+                                        <serializationLibrary>jackson</serializationLibrary>
+                                        <useJakartaEe>false</useJakartaEe>
+                                        <openApiNullable>false</openApiNullable>
+                                    </configOptions>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
