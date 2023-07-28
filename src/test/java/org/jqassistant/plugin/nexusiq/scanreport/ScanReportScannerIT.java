@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ScanReportScannerIT extends AbstractPluginIT {
 
     @Test
-    @TestStore(type = TestStore.Type.REMOTE)
+    //@TestStore(type = TestStore.Type.REMOTE)
     public void testScanReportFileDescriptor() {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
         Descriptor descriptor = getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
