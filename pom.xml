@@ -12,7 +12,7 @@
     <artifactId>jqassistant-nexusiq-plugin</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>jQAssistant nexusiq Plugin</name>
+    <name>jQAssistant Nexus IQ Plugin</name>
     <url>https://jqassistant.org/</url>
 
     <description>
