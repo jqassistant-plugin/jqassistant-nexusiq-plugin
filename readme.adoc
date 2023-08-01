@@ -1,0 +1,37 @@
+= jQAssistant NexusIQ Plugin
+
+This is the NexusIQ Plugin of https://jqassistant.org[jQAssistant].
+It provides a scanner for report files that are exported via the NexusIQ REST API.
+
+For more information on jQAssistant see https://jqassistant.org[^].
+
+== Usage
+
+Add the plugin to the plugins section of the `jqassistant.yml` configuration file:
+
+[source,yaml]
+----
+jqassistant:
+  plugins:
+    # Includes the jQAssistant NexusIQ plugin
+    - group-id: org.jqassistant.plugin
+      artifact-id: jqassistant-nexusiq-plugin
+      version: 1.0.0-SNAPSHOT
+  scan:
+    include:
+      files:
+        # Add the to-be-scanned report file to this list
+        - nexus-iq:scan-report::path-to-nexusiq-report/report.json
+----
+
+== Model
+
+image::docs/jqa-nexusiq-plugin-model.jpg[Neo4j model for the jQAssistant NexusIQ plugin]
+
+== Use Cases
+
+TODO
+
+== Supported Versions
+
+Unknown
