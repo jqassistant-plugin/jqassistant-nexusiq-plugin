@@ -2,7 +2,7 @@
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://schema.jqassistant.org/plugin/v1.10 https://schema.jqassistant.org/plugin/jqassistant-plugin-v1.8.xsd"
                     name="jQAssistant NexusIQ Plugin" id="jqassistant.plugin.nexusiq">
-    <description>Provides a scanner for CycloneDX SBOM files.</description>
+    <description>Provides a scanner and rules for NexusIQ report files.</description>
     <model>
         <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ActionDescriptor</class>
         <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ComponentCoordinateDescriptor</class>
@@ -23,4 +23,7 @@
     <scanner>
         <class>org.jqassistant.plugin.nexusiq.impl.scanreport.ScanReportScannerPlugin</class>
     </scanner>
+    <rules>
+        <resource>nexusiq.xml</resource>
+    </rules>
 </jqassistant-plugin>

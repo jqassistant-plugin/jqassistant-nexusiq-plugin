@@ -18,4 +18,7 @@ public interface ComponentFactDescriptor extends NexusIQDescriptor {
 
     String getHash();
     void setHash(String hash);
+
+    String getDisplayName();
+    void setDisplayName(String displayName);
 }

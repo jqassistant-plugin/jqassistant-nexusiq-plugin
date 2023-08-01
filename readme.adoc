@@ -24,13 +24,16 @@ jqassistant:
         - nexus-iq:scan-report::path-to-nexusiq-report/report.json
 ----
 
+To obtain the report JSON file from NexusIQ you can use the `evaluate` Maven goal from the https://help.sonatype.com/iqserver/integrations/sonatype-clm-for-maven#SonatypeCLMforMaven-EvaluatingEvaluatingProjectComponentswithSonatypeLifecycle[Sonatype CLM plugin].
+Alternatively you can also use the https://help.sonatype.com/iqserver/integrations/nexus-iq-cli#NexusIQCLI-ResultsEvaluationresults[NexusIQ CLI].
+
 == Model
 
 image::docs/jqa-nexusiq-plugin-model.jpg[Neo4j model for the jQAssistant NexusIQ plugin]
 
 == Use Cases
 
-TODO
+This plugin includes rules to expose warnings and failures from the NexusIQ report as minor and major jQA violations.
 
 == Supported Versions
 

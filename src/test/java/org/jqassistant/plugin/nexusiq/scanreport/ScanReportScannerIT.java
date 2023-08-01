@@ -83,6 +83,7 @@ public class ScanReportScannerIT extends AbstractPluginIT {
     private void testComponentFact(ComponentFactDescriptor componentFact) {
         assertThat(componentFact).isNotNull();
         assertThat(componentFact.getHash()).isEqualTo("xyz789");
+        assertThat(componentFact.getDisplayName()).isEqualTo("com.example : my-artifact : 1.0.0");
 
         assertThat(componentFact.getConstraintFacts()).hasSize(1);
         testConstraintFact(componentFact.getConstraintFacts().get(0));
@@ -122,7 +123,7 @@ public class ScanReportScannerIT extends AbstractPluginIT {
 
         assertThat(componentIdentifier.getCoordinates()).hasSize(5);
         assertThat(componentIdentifier.getCoordinates()).anyMatch(c -> c.getName().equals("artifactId") && c.getValue().equals("my-artifact"));
-        assertThat(componentIdentifier.getCoordinates()).anyMatch(c -> c.getName().equals("classifier") && c.getValue().equals(""));
+        assertThat(componentIdentifier.getCoordinates()).anyMatch(c -> c.getName().equals("classifier") && c.getValue().isEmpty());
         assertThat(componentIdentifier.getCoordinates()).anyMatch(c -> c.getName().equals("extension") && c.getValue().equals("jar"));
         assertThat(componentIdentifier.getCoordinates()).anyMatch(c -> c.getName().equals("groupId") && c.getValue().equals("com.example"));
         assertThat(componentIdentifier.getCoordinates()).anyMatch(c -> c.getName().equals("version") && c.getValue().equals("1.0.0"));

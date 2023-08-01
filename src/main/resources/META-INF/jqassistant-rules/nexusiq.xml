@@ -1,0 +1,27 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.jqassistant.org/rule/v1.10 http://schema.jqassistant.org/rule/jqassistant-rule-v1.10.xsd">
+
+    <group id="nexusiq:Default">
+        <includeConstraint refId="spring-boot:AllTypesInApplicationPackage"/>
+    </group>
+
+    <constraint id="nexusiq:Warnings" severity="minor">
+        <description>Maps all warnings of the NexusIQ report to jQA minor warnings.</description>
+        <cypher><![CDATA[
+            MATCH (a:Action)<-[:DEFINES_ACTION]-(pa:PolicyAlert)-[:HAS_TRIGGER]->(t:Trigger)-[:HAS_COMPONENT_FACT]-(compF:ComponentFact)-[:HAS_CONSTRAINT_FACT]->(consF:ConstraintFact)-[:HAS_CONDITION_FACT]->(condF:ConditionFact)
+            WHERE a.actionTypeId = "warn"
+            RETURN compF.displayName as Artifact, consF.constraintName as Constraint, condF.reason as Reason
+        ]]></cypher>
+    </constraint>
+
+    <constraint id="nexusiq:Failures" severity="major">
+        <description>Maps all warnings of the NexusIQ report to jQA minor warnings.</description>
+        <cypher><![CDATA[
+            MATCH (a:Action)<-[:DEFINES_ACTION]-(pa:PolicyAlert)-[:HAS_TRIGGER]->(t:Trigger)-[:HAS_COMPONENT_FACT]-(compF:ComponentFact)-[:HAS_CONSTRAINT_FACT]->(consF:ConstraintFact)-[:HAS_CONDITION_FACT]->(condF:ConditionFact)
+            WHERE a.actionTypeId = "fail"
+            RETURN compF.displayName as Artifact, consF.constraintName as Constraint, condF.reason as Reason
+        ]]></cypher>
+    </constraint>
+
+</jqassistant-rules>
