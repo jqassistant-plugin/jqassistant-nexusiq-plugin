@@ -11,7 +11,7 @@ public enum NexusIQScope implements Scope {
 
     @Override
     public String getPrefix() {
-        return "nexus-iq";
+        return "nexusiq";
     }
 
     @Override

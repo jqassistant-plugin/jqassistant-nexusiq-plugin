@@ -1,4 +1,4 @@
-= jQAssistant NexusIQ Plugin
+= jQAssistant Nexus IQ Plugin
 
 This is the NexusIQ Plugin of https://jqassistant.org[jQAssistant].
 It provides a scanner for report files that are exported via the NexusIQ REST API.
@@ -21,7 +21,7 @@ jqassistant:
     include:
       files:
         # Add the to-be-scanned report file to this list
-        - nexus-iq:scan-report::path-to-nexusiq-report/report.json
+        - nexusiq:scan-report::path-to-nexusiq-report/report.json
 ----
 
 To obtain the report JSON file from NexusIQ you can use the `evaluate` Maven goal from the https://help.sonatype.com/iqserver/integrations/sonatype-clm-for-maven#SonatypeCLMforMaven-EvaluatingEvaluatingProjectComponentswithSonatypeLifecycle[Sonatype CLM plugin].
