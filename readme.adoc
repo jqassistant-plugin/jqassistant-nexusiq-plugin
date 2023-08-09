@@ -45,4 +45,10 @@ The constraints are provided via the group `nexusiq:Default`:
 
 == Supported Versions
 
-Tested with Nexus IQ release 165
+Tested with Nexus IQ release 1.165.
+
+== Changelog
+
+=== 1.0.0
+
+- Initial Release
