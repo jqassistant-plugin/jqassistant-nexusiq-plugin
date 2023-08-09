@@ -17,27 +17,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ScanReportScannerIT extends AbstractPluginIT {
 
     @Test
-    public void testConstraintWarningsResult() throws Exception {
+    public void constraintWarningResult() throws Exception {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
         getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
 
-        Result<Constraint> result = validateConstraint("nexusiq:Warnings");
+        Result<Constraint> result = validateConstraint("nexusiq:Warning");
         assertThat(result.getStatus()).isEqualTo(Result.Status.WARNING);
         assertThat(result.getRows()).hasSize(1);
     }
 
     @Test
-    public void testConstraintFailuresResult() throws Exception {
+    public void constraintFailureResult() throws Exception {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report-fail.json");
         getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
 
-        Result<Constraint> result = validateConstraint("nexusiq:Failures");
+        Result<Constraint> result = validateConstraint("nexusiq:Failure");
         assertThat(result.getStatus()).isEqualTo(Result.Status.FAILURE);
         assertThat(result.getRows()).hasSize(1);
     }
 
     @Test
-    public void testGroupDefaultResult() throws Exception {
+    public void groupDefaultResult() throws Exception {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
         getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
 
@@ -45,8 +45,7 @@ public class ScanReportScannerIT extends AbstractPluginIT {
     }
 
     @Test
-    //@TestStore(type = TestStore.Type.REMOTE)
-    public void testScanReportFileDescriptor() {
+    public void scanReportFileDescriptor() {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
         Descriptor descriptor = getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
 
@@ -63,12 +62,12 @@ public class ScanReportScannerIT extends AbstractPluginIT {
         assertThat(scanReport.getScanId()).isEqualTo("123abc456def");
         assertThat(scanReport.getPolicyAction()).isEqualTo("Failure");
 
-        testPolicyEvaluationResult(scanReport.getPolicyEvaluationResult());
+        verifyPolicyEvaluationResult(scanReport.getPolicyEvaluationResult());
 
         store.commitTransaction();
     }
 
-    private void testPolicyEvaluationResult(PolicyEvaluationResultDescriptor policyEvaluationResult) {
+    private void verifyPolicyEvaluationResult(PolicyEvaluationResultDescriptor policyEvaluationResult) {
         assertThat(policyEvaluationResult).isNotNull();
         assertThat(policyEvaluationResult.getAffectedComponentCount()).isEqualTo(10);
         assertThat(policyEvaluationResult.getCriticalComponentCount()).isEqualTo(11);
@@ -81,26 +80,26 @@ public class ScanReportScannerIT extends AbstractPluginIT {
         assertThat(policyEvaluationResult.getTotalComponentCount()).isEqualTo(1000);
 
         assertThat(policyEvaluationResult.getAlerts()).hasSize(1);
-        testPolicyAlert(policyEvaluationResult.getAlerts().get(0));
+        verifyPolicyAlert(policyEvaluationResult.getAlerts().get(0));
     }
 
-    private void testPolicyAlert(PolicyAlertDescriptor policyAlert) {
+    private void verifyPolicyAlert(PolicyAlertDescriptor policyAlert) {
         assertThat(policyAlert).isNotNull();
 
         assertThat(policyAlert.getActions()).hasSize(1);
-        testAction(policyAlert.getActions().get(0));
+        verifyAction(policyAlert.getActions().get(0));
 
-        testTrigger(policyAlert.getTrigger());
+        verifyTrigger(policyAlert.getTrigger());
     }
 
-    private void testAction(ActionDescriptor action) {
+    private void verifyAction(ActionDescriptor action) {
         assertThat(action).isNotNull();
         assertThat(action.getActionTypeId()).isEqualTo("warn");
         assertThat(action.getTarget()).isNull();
         assertThat(action.getTargetType()).isNull();
     }
 
-    private void testTrigger(TriggerDescriptor trigger) {
+    private void verifyTrigger(TriggerDescriptor trigger) {
         assertThat(trigger).isNotNull();
         assertThat(trigger.getPolicyId()).isEqualTo("p1");
         assertThat(trigger.getPolicyName()).isEqualTo("Architecture-Policy-X");
@@ -108,47 +107,47 @@ public class ScanReportScannerIT extends AbstractPluginIT {
         assertThat(trigger.getThreatLevel()).isEqualTo(7);
 
         assertThat(trigger.getComponentFacts()).hasSize(1);
-        testComponentFact(trigger.getComponentFacts().get(0));
+        verifyComponentFact(trigger.getComponentFacts().get(0));
     }
 
-    private void testComponentFact(ComponentFactDescriptor componentFact) {
+    private void verifyComponentFact(ComponentFactDescriptor componentFact) {
         assertThat(componentFact).isNotNull();
         assertThat(componentFact.getHash()).isEqualTo("xyz789");
         assertThat(componentFact.getDisplayName()).isEqualTo("com.example : my-artifact : 1.0.0");
 
         assertThat(componentFact.getConstraintFacts()).hasSize(1);
-        testConstraintFact(componentFact.getConstraintFacts().get(0));
+        verifyConstraintFact(componentFact.getConstraintFacts().get(0));
 
-        testComponentIdentifier(componentFact.getComponentIdentifier());
+        verifyComponentIdentifier(componentFact.getComponentIdentifier());
     }
 
-    private void testConstraintFact(ConstraintFactDescriptor constraintFact) {
+    private void verifyConstraintFact(ConstraintFactDescriptor constraintFact) {
         assertThat(constraintFact).isNotNull();
         assertThat(constraintFact.getConstraintId()).isEqualTo("c1");
         assertThat(constraintFact.getConstraintName()).isEqualTo("My Architecture Constraint");
         assertThat(constraintFact.getOperatorName()).isEqualTo("OR");
 
         assertThat(constraintFact.getConditionFacts()).hasSize(1);
-        testConditionFact(constraintFact.getConditionFacts().get(0));
+        verifyConditionFact(constraintFact.getConditionFacts().get(0));
     }
 
-    private void testConditionFact(ConditionFactDescriptor conditionFact) {
+    private void verifyConditionFact(ConditionFactDescriptor conditionFact) {
         assertThat(conditionFact).isNotNull();
         assertThat(conditionFact.getConditionTypeId()).isEqualTo("SomeTypeId");
         assertThat(conditionFact.getConditionIndex()).isEqualTo(0);
         assertThat(conditionFact.getSummary()).isEqualTo("Summary");
         assertThat(conditionFact.getReason()).isEqualTo("Reason");
 
-        testTriggerReference(conditionFact.getReference());
+        verifyTriggerReference(conditionFact.getReference());
     }
 
-    private void testTriggerReference(TriggerReferenceDescriptor reference) {
+    private void verifyTriggerReference(TriggerReferenceDescriptor reference) {
         assertThat(reference).isNotNull();
         assertThat(reference.getType()).isEqualTo("SECURITY_VULNERABILITY_REFID");
         assertThat(reference.getValue()).isEqualTo("REFERENCE-VALUE");
     }
 
-    private void testComponentIdentifier(ComponentIdentifierDescriptor componentIdentifier) {
+    private void verifyComponentIdentifier(ComponentIdentifierDescriptor componentIdentifier) {
         assertThat(componentIdentifier).isNotNull();
         assertThat(componentIdentifier.getFormat()).isEqualTo("maven");
 

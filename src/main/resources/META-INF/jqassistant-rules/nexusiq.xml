@@ -3,11 +3,11 @@
                    xsi:schemaLocation="http://schema.jqassistant.org/rule/v1.10 http://schema.jqassistant.org/rule/jqassistant-rule-v1.10.xsd">
 
     <group id="nexusiq:Default">
-        <includeConstraint refId="nexusiq:Warnings"/>
-        <includeConstraint refId="nexusiq:Failures"/>
+        <includeConstraint refId="nexusiq:Warning"/>
+        <includeConstraint refId="nexusiq:Failure"/>
     </group>
 
-    <constraint id="nexusiq:Warnings" severity="minor">
+    <constraint id="nexusiq:Warning" severity="minor">
         <description>Violations with level "warn" reported by Nexus IQ.</description>
         <cypher><![CDATA[
             MATCH (a:Action)<-[:DEFINES_ACTION]-(pa:PolicyAlert)-[:HAS_TRIGGER]->(t:Trigger)-[:HAS_COMPONENT_FACT]-(compF:ComponentFact)-[:HAS_CONSTRAINT_FACT]->(consF:ConstraintFact)-[:HAS_CONDITION_FACT]->(condF:ConditionFact)
@@ -16,7 +16,7 @@
         ]]></cypher>
     </constraint>
 
-    <constraint id="nexusiq:Failures" severity="major">
+    <constraint id="nexusiq:Failure" severity="major">
         <description>Violations with level "fail" reported by Nexus IQ.</description>
         <cypher><![CDATA[
             MATCH (a:Action)<-[:DEFINES_ACTION]-(pa:PolicyAlert)-[:HAS_TRIGGER]->(t:Trigger)-[:HAS_COMPONENT_FACT]-(compF:ComponentFact)-[:HAS_CONSTRAINT_FACT]->(consF:ConstraintFact)-[:HAS_CONDITION_FACT]->(condF:ConditionFact)
