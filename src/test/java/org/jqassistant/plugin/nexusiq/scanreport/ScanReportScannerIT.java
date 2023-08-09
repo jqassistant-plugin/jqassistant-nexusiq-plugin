@@ -1,5 +1,7 @@
 package org.jqassistant.plugin.nexusiq.scanreport;
 
+import com.buschmais.jqassistant.core.report.api.model.Result;
+import com.buschmais.jqassistant.core.rule.api.model.Constraint;
 import com.buschmais.jqassistant.core.shared.io.ClasspathResource;
 import com.buschmais.jqassistant.core.store.api.model.Descriptor;
 import com.buschmais.jqassistant.core.test.plugin.AbstractPluginIT;
@@ -15,10 +17,39 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ScanReportScannerIT extends AbstractPluginIT {
 
     @Test
+    public void testConstraintWarningsResult() throws Exception {
+        File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
+        getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
+
+        Result<Constraint> result = validateConstraint("nexusiq:Warnings");
+        assertThat(result.getStatus()).isEqualTo(Result.Status.WARNING);
+        assertThat(result.getRows()).hasSize(1);
+    }
+
+    @Test
+    public void testConstraintFailuresResult() throws Exception {
+        File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report-fail.json");
+        getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
+
+        Result<Constraint> result = validateConstraint("nexusiq:Failures");
+        assertThat(result.getStatus()).isEqualTo(Result.Status.FAILURE);
+        assertThat(result.getRows()).hasSize(1);
+    }
+
+    @Test
+    public void testGroupDefaultResult() throws Exception {
+        File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
+        getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
+
+        executeGroup("nexusiq:Default");
+    }
+
+    @Test
     //@TestStore(type = TestStore.Type.REMOTE)
     public void testScanReportFileDescriptor() {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
         Descriptor descriptor = getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
+
         store.beginTransaction();
 
         assertThat(descriptor).isInstanceOf(ScanReportFileDescriptor.class);
