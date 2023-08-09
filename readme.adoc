@@ -35,6 +35,11 @@ image::docs/jqa-nexusiq-plugin-model.jpg[Neo4j model for the jQAssistant NexusIQ
 
 This plugin includes rules to expose warnings and failures from the NexusIQ report as minor and major jQA violations.
 
+The constraints are provided via the group `nexusiq:Default`:
+
+- `nexusiq:Warnings` indicates violations with level "warn" that are reported by Nexus IQ
+- `nexusiq:Failures` indicates violations with level "fail" that are reported by Nexus IQ
+
 == Supported Versions
 
-Unknown
+Tested with Nexus IQ release 165
