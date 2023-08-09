@@ -14,10 +14,10 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ScanReportScannerIT extends AbstractPluginIT {
+class ScanReportScannerIT extends AbstractPluginIT {
 
     @Test
-    public void constraintWarningResult() throws Exception {
+    void constraintWarningResult() throws Exception {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
         getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
 
@@ -27,7 +27,7 @@ public class ScanReportScannerIT extends AbstractPluginIT {
     }
 
     @Test
-    public void constraintFailureResult() throws Exception {
+    void constraintFailureResult() throws Exception {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report-fail.json");
         getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
 
@@ -37,7 +37,7 @@ public class ScanReportScannerIT extends AbstractPluginIT {
     }
 
     @Test
-    public void groupDefaultResult() throws Exception {
+    void groupDefaultResult() throws Exception {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
         getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
 
@@ -45,7 +45,7 @@ public class ScanReportScannerIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanReportFileDescriptor() {
+    void scanReportFileDescriptor() {
         File file = ClasspathResource.getFile(ScanReportScannerIT.class, "/scan-report/report.json");
         Descriptor descriptor = getScanner().scan(file, file.getAbsolutePath(), NexusIQScope.SCAN_REPORT);
 
@@ -134,7 +134,7 @@ public class ScanReportScannerIT extends AbstractPluginIT {
     private void verifyConditionFact(ConditionFactDescriptor conditionFact) {
         assertThat(conditionFact).isNotNull();
         assertThat(conditionFact.getConditionTypeId()).isEqualTo("SomeTypeId");
-        assertThat(conditionFact.getConditionIndex()).isEqualTo(0);
+        assertThat(conditionFact.getConditionIndex()).isZero();
         assertThat(conditionFact.getSummary()).isEqualTo("Summary");
         assertThat(conditionFact.getReason()).isEqualTo("Reason");
 
