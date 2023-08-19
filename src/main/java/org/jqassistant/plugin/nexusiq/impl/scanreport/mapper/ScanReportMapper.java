@@ -1,8 +1,9 @@
 package org.jqassistant.plugin.nexusiq.impl.scanreport.mapper;
 
 import com.buschmais.jqassistant.core.scanner.api.Scanner;
+import com.buschmais.jqassistant.plugin.common.api.mapper.DescriptorEnricher;
+
 import org.jqassistant.plugin.nexusiq.api.model.scanreport.ScanReportDescriptor;
-import org.jqassistant.plugin.nexusiq.impl.mapper.DescriptorEnricher;
 import org.jqassistant.plugin.nexusiq.impl.scanreport.generated.model.ApiReportResultsDTO;
 import org.mapstruct.*;
 

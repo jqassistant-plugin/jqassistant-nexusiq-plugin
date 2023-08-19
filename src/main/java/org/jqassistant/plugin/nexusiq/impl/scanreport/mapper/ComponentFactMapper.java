@@ -1,8 +1,9 @@
 package org.jqassistant.plugin.nexusiq.impl.scanreport.mapper;
 
 import com.buschmais.jqassistant.core.scanner.api.Scanner;
+import com.buschmais.jqassistant.plugin.common.api.mapper.DescriptorMapper;
+
 import org.jqassistant.plugin.nexusiq.api.model.scanreport.ComponentFactDescriptor;
-import org.jqassistant.plugin.nexusiq.impl.mapper.DescriptorMapper;
 import org.jqassistant.plugin.nexusiq.impl.scanreport.generated.model.ComponentDisplayName;
 import org.jqassistant.plugin.nexusiq.impl.scanreport.generated.model.ComponentDisplayNamePart;
 import org.jqassistant.plugin.nexusiq.impl.scanreport.generated.model.ComponentFact;
