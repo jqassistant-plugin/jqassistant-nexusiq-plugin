@@ -163,7 +163,7 @@
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <version>1.6.14</version>
+            <version>1.6.11</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
@@ -199,7 +199,7 @@
                         <!-- OpenAPI Generator -->
                         <groupId>org.openapitools</groupId>
                         <artifactId>openapi-generator-maven-plugin</artifactId>
-                        <version>6.2.1</version>
+                        <version>7.7.0</version>
                         <executions>
                             <execution>
                                 <id>generate-nexusiq-api</id>
