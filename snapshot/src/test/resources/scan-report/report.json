@@ -1,0 +1,78 @@
+{
+  "applicationId" : "test-application",
+  "scanId" : "123abc456def",
+  "reportHtmlUrl" : "https://report.example.com/html",
+  "reportPdfUrl" : "https://report.example.com/pdf",
+  "reportDataUrl" : "https://report.example.com/data",
+  "policyAction" : "Failure",
+  "policyEvaluationResult" : {
+    "alerts" : [ {
+      "trigger" : {
+        "policyId" : "p1",
+        "policyName" : "Architecture-Policy-X",
+        "threatLevel" : 7,
+        "policyViolationId" : "pv1",
+        "componentFacts" : [ {
+          "componentIdentifier" : {
+            "format" : "maven",
+            "coordinates" : {
+              "artifactId" : "my-artifact",
+              "classifier" : "",
+              "extension" : "jar",
+              "groupId" : "com.example",
+              "version" : "1.0.0"
+            }
+          },
+          "hash" : "xyz789",
+          "constraintFacts" : [ {
+            "constraintId" : "c1",
+            "constraintName" : "My Architecture Constraint",
+            "operatorName" : "OR",
+            "conditionFacts" : [ {
+              "conditionTypeId" : "SomeTypeId",
+              "conditionIndex" : 0,
+              "summary" : "Summary",
+              "reason" : "Reason",
+              "reference" : {
+                "value" : "REFERENCE-VALUE",
+                "type" : "SECURITY_VULNERABILITY_REFID"
+              },
+              "triggerJson" : null
+            } ]
+          } ],
+          "pathnames" : [ ],
+          "displayName" : {
+            "parts" : [ {
+              "field" : "Group",
+              "value" : "com.example"
+            }, {
+              "value" : " : "
+            }, {
+              "field" : "Artifact",
+              "value" : "my-artifact"
+            }, {
+              "value" : " : "
+            }, {
+              "field" : "Version",
+              "value" : "1.0.0"
+            } ],
+            "name" : "my-artifact"
+          }
+        } ]
+      },
+      "actions" : [ {
+        "actionTypeId" : "warn",
+        "target" : null
+      } ]
+    } ],
+    "affectedComponentCount" : 10,
+    "criticalComponentCount" : 11,
+    "severeComponentCount" : 12,
+    "moderateComponentCount" : 13,
+    "criticalPolicyViolationCount" : 14,
+    "severePolicyViolationCount" : 15,
+    "moderatePolicyViolationCount" : 16,
+    "grandfatheredPolicyViolationCount" : 17,
+    "totalComponentCount" : 1000
+  }
+}

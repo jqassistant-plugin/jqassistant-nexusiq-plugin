@@ -1,0 +1,30 @@
+<jqassistant-plugin xmlns="http://schema.jqassistant.org/plugin/v1.10"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://schema.jqassistant.org/plugin/v1.10 https://schema.jqassistant.org/plugin/jqassistant-plugin-v1.8.xsd"
+                    name="jQAssistant NexusIQ Plugin" id="jqassistant.plugin.nexusiq"
+                    version="${project.version}">
+    <description>Provides a scanner and rules for NexusIQ report files.</description>
+    <model>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ActionDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ComponentCoordinateDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ComponentFactDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ComponentIdentifierDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ConditionFactDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ConstraintFactDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.PolicyAlertDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.PolicyEvaluationResultDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ScanReportDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.ScanReportFileDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.TriggerDescriptor</class>
+        <class>org.jqassistant.plugin.nexusiq.api.model.scanreport.TriggerReferenceDescriptor</class>
+    </model>
+    <scope>
+        <class>org.jqassistant.plugin.nexusiq.api.NexusIQScope</class>
+    </scope>
+    <scanner>
+        <class>org.jqassistant.plugin.nexusiq.impl.scanreport.ScanReportScannerPlugin</class>
+    </scanner>
+    <rules>
+        <resource>nexusiq.xml</resource>
+    </rules>
+</jqassistant-plugin>
