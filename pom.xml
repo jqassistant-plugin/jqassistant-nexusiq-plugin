@@ -54,7 +54,7 @@
     <properties>
         <jqa-json-plugin.version>${com.buschmais.jqassistant.version}</jqa-json-plugin.version>
         <mapstruct.version>1.6.2</mapstruct.version>
-        <jersey.version>2.34</jersey.version>
+        <jersey.version>3.1.9</jersey.version>
     </properties>
 
     <build>
