@@ -17,7 +17,7 @@ jqassistant:
     # Includes the jQAssistant NexusIQ plugin
     - group-id: org.jqassistant.plugin
       artifact-id: jqassistant-nexusiq-plugin
-      version: 1.0.0
+      version: 1.1.0
   scan:
     include:
       files:
@@ -53,3 +53,7 @@ Tested with Nexus IQ release 1.165.
 === 1.0.0
 
 - Initial Release
+
+=== 1.1.0
+
+- Upgraded dependencies and parent version
