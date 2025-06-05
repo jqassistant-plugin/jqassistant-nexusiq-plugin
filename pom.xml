@@ -49,7 +49,7 @@
     </scm>
 
     <properties>
-        <jersey.version>2.46</jersey.version>
+        <jersey.version>2.47</jersey.version>
     </properties>
 
     <build>
