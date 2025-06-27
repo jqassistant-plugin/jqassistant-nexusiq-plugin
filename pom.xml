@@ -50,6 +50,7 @@
 
     <properties>
         <jersey.version>2.47</jersey.version>
+        <jsr305.version>3.0.2</jsr305.version>
     </properties>
 
     <build>
@@ -100,9 +101,9 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <scope>provided</scope>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${jsr305.version}</version>
         </dependency>
         <dependency>
             <groupId>com.buschmais.jqassistant.core</groupId>
